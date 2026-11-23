@@ -55,6 +55,8 @@ The architecture separates the responsibilities of mail transfer, authentication
 
 Postfix is the primary Mail Transfer Agent (MTA) in the infrastructure. It is responsible for receiving and sending email messages using SMTP.
 
+Authenticated email clients submit outgoing messages through SMTP submission on port 587. Postfix receives these messages and uses Dovecot for SMTP authentication before processing outgoing mail.
+
 ### Responsibilities
 
 Postfix handles:
@@ -76,7 +78,7 @@ When an authorised user submits an email, Postfix handles the outgoing message. 
 
 ## 4. Dovecot - Mail Access and Delivery
 
-Dovecot provides mailbox access, authentication, and local mail delivery services. It works alongside Postfix to support the complete email lifecycle.
+Dovecot provides secure IMAP access through port 993, integrates with Postfix for SMTP authentication, and handles local mailbox delivery through LMTP. It works alongside Postfix to support the complete email lifecycle.
 
 ### Responsibilities
 
@@ -102,7 +104,7 @@ Postfix uses the Local Mail Transfer Protocol (LMTP) to deliver locally hosted m
 
 ## 5. PostgreSQL - Virtual Mail User Database
 
-PostgreSQL is used to store virtual mail account information. The mail server maintains its own virtual mail user records rather than directly using Linux system accounts or Django's application authentication users.
+PostgreSQL is used to store virtual mail account information and domain information. Both Postfix and Dovecot integrate with PostgreSQL for their respective mail-related lookups. The mail server maintains its own virtual mail user records rather than directly using Linux system accounts or Django's application authentication users.
 
 This provides separation between:
 
@@ -112,7 +114,11 @@ This provides separation between:
 
 ### Virtual mail accounts
 
-Postfix and Dovecot integrate with PostgreSQL to obtain the information required for virtual mail domain and user handling. The database includes the `website_mailuser` table used by the mail infrastructure. The virtual mail account arrangement allows mailbox management to operate independently of the website's custom user model.
+Virtual mail accounts are managed through the Django application. Django provides the administrative interface for managing mail accounts, while PostgreSQL stores the corresponding mail-related records used by Postfix and Dovecot. These mail accounts are managed separately from the website's normal user authentication accounts and do not require individual Linux system users.
+
+Postfix and Dovecot integrate with PostgreSQL to obtain the information required for virtual mail domain and user handling. The database includes the `website_mailuser` table used by the mail infrastructure.
+
+The mail server uses the `Maildir` format for mailbox storage. Dovecot manages mailbox access and delivery using the configured Maildir storage.
 
 ### Benefits of virtual mail users
 
