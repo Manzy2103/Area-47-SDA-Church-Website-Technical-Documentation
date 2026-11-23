@@ -260,13 +260,13 @@ The technical documentation is organised into the following sections:
 |---|---|---|
 | 01 | Project Overview | Background, objectives, evolution and technical contributions |
 | 02 | System Architecture | Application architecture and component relationships |
-| 03 | Backend Development | Django applications, models, authentication and business logic |
-| 04 | Database Management | PostgreSQL database design and management |
-| 05 | Linux Server Administration | Ubuntu server configuration and administration |
-| 06 | Deployment Process | Staging, production and release workflows |
-| 07 | Docker Containerisation | Docker configuration and container deployment |
+| 03 | Application Features | Django applications, models, authentication and business logic |
+| 04 | Background Processing | PostgreSQL database design and management |
+| 05 | Server Infrastructure | Ubuntu server configuration and administration |
+| 06 | Deployment and DevOps | Staging, production and release workflows |
+| 07 | Security and Maintenance | Docker configuration and container deployment |
 | 08 | Mail Server Infrastructure | Mail services, authentication and email security |
-| 09 | Challenges and Solutions | Technical problems, troubleshooting and lessons learned |
+| 09 | Challenges and Lessons | Technical problems, troubleshooting and lessons learned |
 
 ## 11. Documentation Status
 
