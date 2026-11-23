@@ -6,7 +6,7 @@ The Area 47 SDA website is a django-based web platform developed to support the 
 
 This repository documents the technical work behind the platform, with a focus on backend development, database management, Linux server administration, deployment workflows and infrastructure.
 
-The purpose of this documentation is to explain how the system is structured, how its components work together, the technical decisions made during development, and the challenges encountered alon the way.
+The purpose of this documentation is to explain how the system is structured, how its components work together, the technical decisions made during development, and the challenges encountered along the way.
 
 ## Technology Stack
 
